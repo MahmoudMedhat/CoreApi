@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col">
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>        
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let Deps of services.Dep">       
+          <td>{{Deps.id}}</td>
+          <td>{{Deps.name}}</td>              
+        </tr>     
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <h3 class="text-secondary">Create Departements</h3>
+    <form  [formGroup]="DepForm" (ngSubmit)="onSubmit()">  
+      <div class="form-group" >              
+          <label  for="fullName">Departement Name: </label>      
+            <input placeholder="Departement Name" class="form-control" id="fullName" type="text" 
+            formControlName="name" name="name">   <br> 
+            <button class="btn btn-primary" type="submit">Save</button>   
+      </div> 
+    </form>
+  </div>
+</div>
+
+
+  
+

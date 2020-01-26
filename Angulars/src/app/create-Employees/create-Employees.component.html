@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Salary</th>
+          <th scope="col">Dep</th>
+          <th scope="col">Date</th>
+          <th scope="col">Gender</th>        
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let Emp of Services.Emps"(click)="OnClick(Emp)" >       
+          <td>{{Emp.id}}</td>
+          <td>{{Emp.name}}</td>
+          <td>{{Emp.salary}}</td>
+          <td >
+            {{Emp.dep.name}}
+          </td> 
+          <td>
+            {{Emp.expireDate | date:'yyyy-MM-dd'}}
+          </td> 
+          <td>
+            {{Emp.gender}}
+          </td>     
+        </tr>    
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+   
+    <h3 class="text-secondary">Create and Update Employee</h3>
+<form  [formGroup]="EmpForm" (ngSubmit)="onSubmit()">  
+  <div class="form-group" >
+    <mat-form-field>
+      <input formControlName="Date" matInput [matDatepicker]="picker" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+   <br>
+       <input type="number"formControlName="id" hidden>      
+      <label  for="fullName">Full Name: </label>      
+        <input placeholder="Name" class="form-control" id="fullName" type="text" formControlName="name" name="name">   &nbsp;            
+      <label for="salary">Salary: </label>        
+        <input placeholder="Salary" class="form-control" id="salary" type="number" formControlName="salary"name="salary"> &nbsp;
+        <label  for="Dep">Departements: </label> 
+        <select class="form-control" formControlName="deps" name="Dep">
+          <option value="" selected disabled hidden>Choose here</option>
+          <option  *ngFor="let item of DepServices.Dep" [value]="item.id">
+            {{item.name}}
+          </option>
+        </select  > 
+        <br>  
+        <div class="radio">
+          <label><input formControlName="Gender" type="radio" name="Gender" checked value="Male">Male</label>
+        </div>
+        <div class="radio">
+          <label><input formControlName="Gender" type="radio" name="Gender" value=Female>Female</label>
+        </div>
+        
+        <button class="btn btn-primary" type="submit">Save</button>   
+  </div> 
+</form>
+  </div>
+
+
+
